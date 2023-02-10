@@ -43,8 +43,7 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "Goodday\\Goodwall\\": "packages/goodwall/src"
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {

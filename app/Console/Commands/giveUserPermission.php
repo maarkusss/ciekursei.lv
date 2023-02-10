@@ -62,19 +62,6 @@ class giveUserPermission extends Command
 
             $array[] = 'view visitors';
 
-            $array[] = 'view loantypes';
-            $array[] = 'edit loantypes';
-            $array[] = 'delete loantypes';
-            $array[] = 'add loantypes';
-
-            $array[] = 'view consumers';
-            $array[] = 'delete consumers';
-
-            $array[] = 'view lenders';
-            $array[] = 'edit lenders';
-            $array[] = 'delete lenders';
-            $array[] = 'add lenders';
-
             $array[] = 'view faqs';
             $array[] = 'edit faqs';
             $array[] = 'delete faqs';

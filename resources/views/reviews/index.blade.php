@@ -13,11 +13,11 @@
             "url": "{{ url()->current() }}",
             "logo": "
             @if ($logo = \App\Models\Admincp\Settings::where('name', 'logo')->first())
-                {{ 'https://kredituapvienosana.lv' . $logo->value }}
+                {{ 'https://ciekursei.lv' . $logo->value }}
             @endif
             ",
-            "image": "https://kredituapvienosana.lv/images/icon-192x192.png",
-            "email": "mailto:info@kredituapvienosana.lv",
+            "image": "https://ciekursei.lv/images/icon-192x192.png",
+            "email": "mailto:info@ciekursei.lv",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Saldus",
@@ -53,11 +53,9 @@
                     <div class="grid grid-cols-1 gap-6 pb-2 mx-auto md:grid-cols-6">
                         @foreach ($lenders as $lender)
                             <a class="transition-all duration-200 hover:translate-y-2 hover:drop-shadow-xl"
-                               href="{{ route('section.deep', ['name' => $section->route_name, 'deep_name' => $lender->route_name]) }}">
-                                <img src="{{ $lender->image }}"
-                                     alt="{{ $lender->name }}"
-                                     title="{{ $lender->name }}"
-                                     loading="lazy">
+                                href="{{ route('section.deep', ['name' => $section->route_name, 'deep_name' => $lender->route_name]) }}">
+                                <img src="{{ $lender->image }}" alt="{{ $lender->name }}" title="{{ $lender->name }}"
+                                    loading="lazy">
                             </a>
                         @endforeach
                     </div>
@@ -77,8 +75,7 @@
         {{-- FAQ --}}
         @if ($section->type == 'faqs')
             @if ($faqs)
-                <x-faq :faqs="$faqs"
-                       :faqPage="true"></x-faq>
+                <x-faq :faqs="$faqs" :faqPage="true"></x-faq>
             @endif
         @endif
     </main>

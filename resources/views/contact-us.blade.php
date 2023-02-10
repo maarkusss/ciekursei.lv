@@ -14,11 +14,11 @@
             "url": "{{ url()->current() }}",
             "logo": "
             @if ($logo = \App\Models\Admincp\Settings::where('name', 'logo')->first())
-                {{ 'https://kredituapvienosana.lv' . $logo->value }}
+                {{ 'https://ciekursei.lv' . $logo->value }}
             @endif
             ",
-            "image": "https://kredituapvienosana.lv/images/icon-192x192.png",
-            "email": "mailto:info@kredituapvienosana.lv",
+            "image": "https://ciekursei.lv/images/icon-192x192.png",
+            "email": "mailto:info@ciekursei.lv",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Saldus",
@@ -42,35 +42,28 @@
                 <div class="max-w-full mb-2 prose text-justify">
                     {!! $section->text !!}
                 </div>
-                <form action="{{ route('section.post', ['name' => $section->route_name]) }}"
-                      method="POST">
+                <form action="{{ route('section.post', ['name' => $section->route_name]) }}" method="POST">
                     @csrf
-                    <input type="hidden"
-                           id="recaptchaResponse"
-                           name="recaptcha">
+                    <input type="hidden" id="recaptchaResponse" name="recaptcha">
                     <label class="block mb-2">
-                        <input class="w-full px-3 py-2 border border-gray-300 rounded focus:border-blue-300 focus:ring-blue-300 focus:drop-shadow-lg"
-                               type="text"
-                               name="name"
-                               placeholder="@lang('Name')" />
+                        <input
+                            class="w-full px-3 py-2 border border-gray-300 rounded focus:border-blue-300 focus:ring-blue-300 focus:drop-shadow-lg"
+                            type="text" name="name" placeholder="@lang('Name')" />
                     </label>
                     <label class="block mb-2">
-                        <input class="w-full px-3 py-2 border border-gray-300 rounded focus:border-blue-300 focus:ring-blue-300 focus:drop-shadow-lg"
-                               type="email"
-                               name="email"
-                               placeholder="@lang('E-mail')"
-                               required />
+                        <input
+                            class="w-full px-3 py-2 border border-gray-300 rounded focus:border-blue-300 focus:ring-blue-300 focus:drop-shadow-lg"
+                            type="email" name="email" placeholder="@lang('E-mail')" required />
                     </label>
                     <label class="block mb-2">
                         <textarea rows="7"
-                                  class="w-full px-3 py-2 border border-gray-300 rounded focus:border-blue-300 focus:ring-blue-300 focus:drop-shadow-lg"
-                                  name="question"
-                                  placeholder="@lang('Your question')"
-                                  required></textarea>
+                            class="w-full px-3 py-2 border border-gray-300 rounded focus:border-blue-300 focus:ring-blue-300 focus:drop-shadow-lg"
+                            name="question" placeholder="@lang('Your question')" required></textarea>
                     </label>
                     <div class="flex flex-row items-center">
-                        <button class="px-3 py-2 text-center text-white transition-all rounded-md bg-primary-button hover:bg-blue-600"
-                                type="submit">
+                        <button
+                            class="px-3 py-2 text-center text-white transition-all rounded-md bg-primary-button hover:bg-blue-600"
+                            type="submit">
                             @lang('Send a message')
                         </button>
                         @include('components.infobox')

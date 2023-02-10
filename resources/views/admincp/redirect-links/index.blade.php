@@ -71,6 +71,6 @@
     <script>
         const activeSection = document.getElementById("sidebar-redirect-links");
 
-        activeSection.classList.add("text-gray-600", "bg-gray-200");
+        activeSection.classList.add("text-stone-900", "bg-primary-normal/40", "font-semibold");
     </script>
 @endsection

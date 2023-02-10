@@ -1,9 +1,47 @@
-<div class="fixed top-0 left-0 z-40 flex hidden w-56 max-h-screen min-h-full px-3 py-4 pt-20 bg-white border-r lg:block lg:mt-0"
+<div class="fixed top-0 left-0 z-40 flex hidden w-56 max-h-screen min-h-full px-3 py-4 bg-primary-normal/20 lg:block lg:mt-0"
     id="sidebar">
     <ul class="w-full overflow-y-auto">
         <li class="mb-2">
+            <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700"
+                id="dropdown-background sidebar-statistics">
+                <div class="flex flex-row items-center justify-between w-full py-2 cursor-pointer"
+                    id="dropdown-container">
+                    <div class="flex cursor-pointer">
+                        <svg class="w-5 h-5 mr-2 fill-current">
+                            <path
+                                d="M13.092 10.592a5 5 0 1 0-6.184 0 8.333 8.333 0 0 0-5.183 6.816.838.838 0 1 0 1.667.184 6.667 6.667 0 0 1 13.25 0 .833.833 0 0 0 .833.741h.092a.833.833 0 0 0 .733-.916 8.334 8.334 0 0 0-5.208-6.825zM10 10a3.333 3.333 0 1 1 0-6.667A3.333 3.333 0 0 1 10 10z" />
+                        </svg>
+                        <div class="flex flex-row items-center">
+                            <span class="font-[1000] text-normal">{{ Auth::user()->first_name }}
+                                {{ Auth::user()->last_name }}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <svg class="w-5 h-5 fill-current" id="dropdown-toggle">
+                            <path
+                                d="M9.29302 12.95L10 13.657L15.657 8L14.243 6.586L10 10.828L5.75702 6.586L4.34302 8L9.29302 12.95Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center hidden" id="dropdown">
+                    <a class="flex py-4 transition-colors rounded text-stone-700 hover:text-stone-600"
+                        href="{{ route('logout', ['lang' => app()->getLocale()]) }}"
+                        onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                        <span class="font-medium text-normal">Log Out</span>
+                        <svg class="w-5 h-5 ml-1 fill-current">
+                            <path
+                                d="M3.33325 10C3.33325 10.221 3.42105 10.433 3.57733 10.5893C3.73361 10.7456 3.94557 10.8334 4.16659 10.8334H10.4916L8.57492 12.7417C8.49681 12.8192 8.43482 12.9113 8.39251 13.0129C8.3502 13.1144 8.32842 13.2233 8.32842 13.3334C8.32842 13.4434 8.3502 13.5523 8.39251 13.6538C8.43482 13.7554 8.49681 13.8476 8.57492 13.925C8.65239 14.0031 8.74455 14.0651 8.8461 14.1074C8.94765 14.1497 9.05657 14.1715 9.16658 14.1715C9.27659 14.1715 9.38552 14.1497 9.48707 14.1074C9.58861 14.0651 9.68078 14.0031 9.75825 13.925L13.0916 10.5917C13.1675 10.5124 13.2269 10.419 13.2666 10.3167C13.3499 10.1138 13.3499 9.88624 13.2666 9.68335C13.2269 9.58106 13.1675 9.48761 13.0916 9.40835L9.75825 6.07502C9.68055 5.99732 9.58831 5.93569 9.48679 5.89364C9.38527 5.85159 9.27647 5.82994 9.16658 5.82994C9.0567 5.82994 8.9479 5.85159 8.84638 5.89364C8.74486 5.93569 8.65262 5.99732 8.57492 6.07502C8.49722 6.15272 8.43559 6.24496 8.39353 6.34648C8.35148 6.448 8.32984 6.5568 8.32984 6.66669C8.32984 6.77657 8.35148 6.88538 8.39353 6.9869C8.43559 7.08841 8.49722 7.18066 8.57492 7.25835L10.4916 9.16669H4.16659C3.94557 9.16669 3.73361 9.25449 3.57733 9.41077C3.42105 9.56705 3.33325 9.77901 3.33325 10ZM14.1666 1.66669H5.83325C5.17021 1.66669 4.53433 1.93008 4.06549 2.39892C3.59664 2.86776 3.33325 3.50365 3.33325 4.16669V6.66669C3.33325 6.8877 3.42105 7.09966 3.57733 7.25594C3.73361 7.41222 3.94557 7.50002 4.16659 7.50002C4.3876 7.50002 4.59956 7.41222 4.75584 7.25594C4.91212 7.09966 4.99992 6.8877 4.99992 6.66669V4.16669C4.99992 3.94567 5.08772 3.73371 5.244 3.57743C5.40028 3.42115 5.61224 3.33335 5.83325 3.33335H14.1666C14.3876 3.33335 14.5996 3.42115 14.7558 3.57743C14.9121 3.73371 14.9999 3.94567 14.9999 4.16669V15.8334C14.9999 16.0544 14.9121 16.2663 14.7558 16.4226C14.5996 16.5789 14.3876 16.6667 14.1666 16.6667H5.83325C5.61224 16.6667 5.40028 16.5789 5.244 16.4226C5.08772 16.2663 4.99992 16.0544 4.99992 15.8334V13.3334C4.99992 13.1123 4.91212 12.9004 4.75584 12.7441C4.59956 12.5878 4.3876 12.5 4.16659 12.5C3.94557 12.5 3.73361 12.5878 3.57733 12.7441C3.42105 12.9004 3.33325 13.1123 3.33325 13.3334V15.8334C3.33325 16.4964 3.59664 17.1323 4.06549 17.6011C4.53433 18.07 5.17021 18.3334 5.83325 18.3334H14.1666C14.8296 18.3334 15.4655 18.07 15.9344 17.6011C16.4032 17.1323 16.6666 16.4964 16.6666 15.8334V4.16669C16.6666 3.50365 16.4032 2.86776 15.9344 2.39892C15.4655 1.93008 14.8296 1.66669 14.1666 1.66669Z" />
+                        </svg>
+                    </a>
+                    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </div>
+            </div>
+        </li>
+        <li class="mb-2">
             <a href="{{ route('homepage') }}" target="_blank" class="w-full">
-                <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                     id="sidebar-client-side">
                     <div class="flex flex-row items-center justify-between py-2">
                         <div class="flex flex-row items-center">
@@ -23,7 +61,7 @@
         </li>
         <li class="mb-2">
             <a href="{{ route('admincp.dashboard') }}" class="w-full">
-                <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                     id="sidebar-overview">
                     <div class="flex flex-row items-center justify-between py-2">
                         <div class="flex flex-row items-center">
@@ -44,7 +82,7 @@
         @can('view admins')
             <li class="mb-2">
                 <a href="{{ route('admincp.admins.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                         id="sidebar-admins">
                         <div class="flex flex-row items-center justify-between py-2">
                             <div class="flex flex-row items-center">
@@ -66,7 +104,7 @@
         @can('view bans')
             <li class="mb-2">
                 <a href="{{ route('admincp.bans.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                         id="sidebar-bans">
                         <div class="flex flex-row items-center justify-between py-2">
                             <div class="flex flex-row items-center">
@@ -88,7 +126,7 @@
         @can('view faqs')
             <li class="mb-2">
                 <a href="{{ route('admincp.faqs.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                         id="sidebar-admins">
                         <div class="flex flex-row items-center justify-between py-2">
                             <div class="flex flex-row items-center">
@@ -110,7 +148,7 @@
         @can('view images')
             <li class="mb-2">
                 <a href="{{ route('admincp.images.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                         id="sidebar-images">
                         <div class="flex flex-row items-center justify-between py-2">
                             <div class="flex flex-row items-center">
@@ -129,76 +167,10 @@
                 </a>
             </li>
         @endcan
-        @can('view consumers')
-            <li class="mb-2">
-                <a href="{{ route('admincp.consumers.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
-                        id="sidebar-consumers">
-                        <div class="flex flex-row items-center justify-between py-2">
-                            <div class="flex flex-row items-center">
-                                <svg class="w-5 h-5 mr-2 fill-current">
-                                    <path
-                                        d="M10.25 10.183a4.1 4.1 0 0 0 1.417-3.1 4.167 4.167 0 0 0-8.334 0 4.1 4.1 0 0 0 1.417 3.1A6.667 6.667 0 0 0 .833 16.25a.833.833 0 1 0 1.667 0 5 5 0 1 1 10 0 .833.833 0 1 0 1.667 0 6.666 6.666 0 0 0-3.917-6.067zm-2.75-.6a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm8.117.267A4.167 4.167 0 0 0 12.5 2.917a.833.833 0 0 0 0 1.666 2.5 2.5 0 0 1 2.5 2.5 2.499 2.499 0 0 1-1.25 2.159.834.834 0 0 0-.042 1.416l.325.217.109.058a5.834 5.834 0 0 1 3.333 5.317.833.833 0 1 0 1.667 0 7.501 7.501 0 0 0-3.525-6.4z" />
-                                </svg>
-                                <span class="font-medium text-normal">Consumers</span>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col hidden py-1 pl-6 ml-1">
-                        </div>
-                    </div>
-                </a>
-            </li>
-        @endcan
-        @can('view lenders')
-            <li class="mb-2">
-                <a href="{{ route('admincp.lenders.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
-                        id="sidebar-lenders">
-                        <div class="flex flex-row items-center justify-between py-2">
-                            <div class="flex flex-row items-center">
-                                <svg class="w-5 h-5 mr-2 fill-current">
-                                    <path
-                                        d="M7.917 8.75H10a.833.833 0 0 0 0-1.667h-.833v-.416a.833.833 0 1 0-1.667 0v.458a2.083 2.083 0 0 0 .417 4.125h.833a.417.417 0 0 1 0 .833H6.667a.833.833 0 1 0 0 1.667H7.5v.417a.833.833 0 1 0 1.667 0v-.459a2.083 2.083 0 0 0-.417-4.125h-.833a.417.417 0 0 1 0-.833zM17.5 10H15V2.5a.835.835 0 0 0-1.25-.725l-2.5 1.433-2.5-1.433a.833.833 0 0 0-.833 0l-2.5 1.433-2.5-1.433a.833.833 0 0 0-1.25.725v13.333a2.5 2.5 0 0 0 2.5 2.5h11.666a2.5 2.5 0 0 0 2.5-2.5v-5A.833.833 0 0 0 17.5 10zM4.167 16.667a.834.834 0 0 1-.834-.834V3.942L5 4.892a.9.9 0 0 0 .833 0l2.5-1.434 2.5 1.434a.9.9 0 0 0 .834 0l1.666-.95v11.891c.003.285.053.566.15.834H4.167zm12.5-.834a.834.834 0 0 1-1.667 0v-4.166h1.667v4.166z" />
-                                </svg>
-                                <span class="font-medium text-normal">Lenders</span>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col hidden py-1 pl-6 ml-1">
-                        </div>
-                    </div>
-                </a>
-            </li>
-        @endcan
-        @can('view loantypes')
-            <li class="mb-2">
-                <a href="{{ route('admincp.loantypes.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
-                        id="sidebar-loantypes">
-                        <div class="flex flex-row items-center justify-between py-2">
-                            <div class="flex flex-row items-center">
-                                <svg class="w-5 h-5 mr-2 fill-current">
-                                    <path
-                                        d="M2.5 10h5a.833.833 0 0 0 .833-.833v-5a.833.833 0 0 0-.833-.834h-5a.833.833 0 0 0-.833.834v5A.833.833 0 0 0 2.5 10zm.833-5h3.334v3.333H3.333V5zm7.5 1.667H17.5A.833.833 0 0 0 17.5 5h-6.667a.833.833 0 0 0 0 1.667zm0 8.333H2.5a.833.833 0 1 0 0 1.667h8.333a.833.833 0 1 0 0-1.667zm6.667-3.333h-15a.833.833 0 1 0 0 1.666h15a.833.833 0 0 0 0-1.666zm0-3.334h-6.667a.833.833 0 0 0 0 1.667H17.5a.833.833 0 0 0 0-1.667z" />
-                                </svg>
-                                <span class="font-medium text-normal">Loan types</span>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col hidden py-1 pl-6 ml-1">
-                        </div>
-                    </div>
-                </a>
-            </li>
-        @endcan
         @can('view sections')
             <li class="mb-2">
                 <a href="{{ route('admincp.sections.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                         id="sidebar-sections">
                         <div class="flex flex-row items-center justify-between py-2">
                             <div class="flex flex-row items-center">
@@ -217,32 +189,10 @@
                 </a>
             </li>
         @endcan
-        @can('view settings')
-            <li class="mb-2">
-                <a href="{{ route('admincp.settings.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
-                        id="sidebar-settings">
-                        <div class="flex flex-row items-center justify-between py-2">
-                            <div class="flex flex-row items-center">
-                                <svg class="w-5 h-5 mr-2 fill-current">
-                                    <path
-                                        d="M17.767 7.959l-1.575-.525.741-1.484a.834.834 0 0 0-.158-.95L15 3.225a.834.834 0 0 0-.958-.158l-1.484.742-.525-1.575a.834.834 0 0 0-.783-.567h-2.5a.833.833 0 0 0-.792.567l-.525 1.575-1.483-.742a.833.833 0 0 0-.95.158L3.225 5a.833.833 0 0 0-.158.959l.741 1.483-1.575.525a.833.833 0 0 0-.566.783v2.5a.833.833 0 0 0 .566.792l1.575.525-.741 1.483a.834.834 0 0 0 .158.95L5 16.775a.833.833 0 0 0 .958.159l1.484-.742.525 1.575a.834.834 0 0 0 .791.567h2.5a.834.834 0 0 0 .792-.567l.525-1.575 1.483.742a.833.833 0 0 0 .942-.159L16.775 15a.834.834 0 0 0 .158-.958l-.741-1.483 1.575-.525a.834.834 0 0 0 .566-.784v-2.5a.834.834 0 0 0-.566-.791zm-1.1 2.691l-1 .334a1.668 1.668 0 0 0-.967 2.35l.475.95-.917.916-.925-.5a1.667 1.667 0 0 0-2.325.967l-.333 1H9.35l-.333-1a1.667 1.667 0 0 0-2.35-.967l-.95.475-.917-.916.5-.925a1.667 1.667 0 0 0-.967-2.35l-1-.334v-1.3l1-.333a1.667 1.667 0 0 0 .967-2.35l-.475-.925.917-.917.925.475a1.667 1.667 0 0 0 2.35-.966l.333-1h1.3l.333 1a1.666 1.666 0 0 0 2.35.966l.95-.475.917.917-.5.925a1.667 1.667 0 0 0 .967 2.325l1 .333v1.325zM10 6.667a3.333 3.333 0 1 0 0 6.667 3.333 3.333 0 0 0 0-6.667zm0 5a1.667 1.667 0 1 1 0-3.334 1.667 1.667 0 0 1 0 3.334z" />
-                                </svg>
-                                <span class="font-medium text-normal">Settings</span>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col hidden py-1 pl-6 ml-1">
-                        </div>
-                    </div>
-                </a>
-            </li>
-        @endcan
         @can('view reviews')
             <li class="mb-2">
                 <a href="{{ route('admincp.reviews.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                         id="sidebar-reviews">
                         <div class="flex flex-row items-center justify-between py-2">
                             <div class="flex flex-row items-center">
@@ -260,7 +210,7 @@
         @can('view connected urls')
             <li class="mb-2">
                 <a href="{{ route('admincp.connected-urls.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                         id="connected-urls">
                         <div class="flex flex-row items-center justify-between py-2">
                             <div class="flex flex-row items-center">
@@ -286,32 +236,10 @@
                 </a>
             </li>
         @endcan
-        @can('view statistics')
-            <li class="mb-2">
-                <a href="{{ route('admincp.statistics.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
-                        id="sidebar-statistics">
-                        <div class="flex flex-row items-center justify-between py-2">
-                            <div class="flex flex-row items-center">
-                                <svg class="w-5 h-5 mr-2 fill-current">
-                                    <path
-                                        d="M17.5 16.667h-.833v-12.5a.833.833 0 1 0-1.667 0v12.5h-1.667V7.5a.833.833 0 1 0-1.666 0v9.167H10v-5.834a.833.833 0 1 0-1.667 0v5.834H6.667v-2.5a.833.833 0 1 0-1.667 0v2.5H3.333V2.5a.833.833 0 1 0-1.666 0v15a.833.833 0 0 0 .833.833h15a.833.833 0 0 0 0-1.666z" />
-                                </svg>
-                                <span class="font-medium text-normal">Statistics</span>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col hidden py-1 pl-6 ml-1">
-                        </div>
-                    </div>
-                </a>
-            </li>
-        @endcan
         @can('view visitors')
             <li class="mb-2">
                 <a href="{{ route('admincp.visitors.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                         id="sidebar-visitors">
                         <div class="flex flex-row items-center justify-between py-2">
                             <div class="flex flex-row items-center">
@@ -333,7 +261,7 @@
         @can('view redirectlinks')
             <li class="mb-2">
                 <a href="{{ route('admincp.redirect-links.index') }}" class="w-full">
-                    <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-200 hover:text-gray-600"
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                         id="sidebar-redirect-links">
                         <div class="flex flex-row items-center justify-between py-2">
                             <div class="flex flex-row items-center">
@@ -348,8 +276,30 @@
                 </a>
             </li>
         @endcan
+        @can('view settings')
+            <li class="mb-2">
+                <a href="{{ route('admincp.settings.index') }}" class="w-full">
+                    <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
+                        id="sidebar-settings">
+                        <div class="flex flex-row items-center justify-between py-2">
+                            <div class="flex flex-row items-center">
+                                <svg class="w-5 h-5 mr-2 fill-current">
+                                    <path
+                                        d="M17.767 7.959l-1.575-.525.741-1.484a.834.834 0 0 0-.158-.95L15 3.225a.834.834 0 0 0-.958-.158l-1.484.742-.525-1.575a.834.834 0 0 0-.783-.567h-2.5a.833.833 0 0 0-.792.567l-.525 1.575-1.483-.742a.833.833 0 0 0-.95.158L3.225 5a.833.833 0 0 0-.158.959l.741 1.483-1.575.525a.833.833 0 0 0-.566.783v2.5a.833.833 0 0 0 .566.792l1.575.525-.741 1.483a.834.834 0 0 0 .158.95L5 16.775a.833.833 0 0 0 .958.159l1.484-.742.525 1.575a.834.834 0 0 0 .791.567h2.5a.834.834 0 0 0 .792-.567l.525-1.575 1.483.742a.833.833 0 0 0 .942-.159L16.775 15a.834.834 0 0 0 .158-.958l-.741-1.483 1.575-.525a.834.834 0 0 0 .566-.784v-2.5a.834.834 0 0 0-.566-.791zm-1.1 2.691l-1 .334a1.668 1.668 0 0 0-.967 2.35l.475.95-.917.916-.925-.5a1.667 1.667 0 0 0-2.325.967l-.333 1H9.35l-.333-1a1.667 1.667 0 0 0-2.35-.967l-.95.475-.917-.916.5-.925a1.667 1.667 0 0 0-.967-2.35l-1-.334v-1.3l1-.333a1.667 1.667 0 0 0 .967-2.35l-.475-.925.917-.917.925.475a1.667 1.667 0 0 0 2.35-.966l.333-1h1.3l.333 1a1.666 1.666 0 0 0 2.35.966l.95-.475.917.917-.5.925a1.667 1.667 0 0 0 .967 2.325l1 .333v1.325zM10 6.667a3.333 3.333 0 1 0 0 6.667 3.333 3.333 0 0 0 0-6.667zm0 5a1.667 1.667 0 1 1 0-3.334 1.667 1.667 0 0 1 0 3.334z" />
+                                </svg>
+                                <span class="font-medium text-normal">Settings</span>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col hidden py-1 pl-6 ml-1">
+                        </div>
+                    </div>
+                </a>
+            </li>
+        @endcan
         <li class="mb-2">
-            <div class="flex flex-col items-start justify-start px-2 text-gray-500 bg-white rounded hover:bg-gray-100 hover:text-gray-600"
+            <div class="flex flex-col items-start justify-start px-2 rounded text-stone-700 hover:text-primary-normal"
                 id="dropdown-background sidebar-statistics">
                 <div class="flex flex-row items-center justify-between w-full py-2" id="dropdown-container">
                     <a href="#">
@@ -376,7 +326,7 @@
                 <div class="flex flex-col hidden py-1 pl-6 ml-1" id="dropdown">
                     @foreach (\App\Models\Admincp\Settings::where('name', 'lang')->get() as $language)
                         <a href="{{ '//' . $current_domain . $port . '/' . $language->value . '/' . $requestPath[1] . '/' . (isset($requestPath[2]) ? $requestPath[2] : '') }}"
-                            class="py-1 text-gray-500 hover:text-gray-600">
+                            class="py-1 text-gray-100 hover:text-primary-normal">
                             {{ __('admincp-sidebar.' . $language->value) }}</a>
                     @endforeach
                 </div>

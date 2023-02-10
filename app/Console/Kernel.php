@@ -24,19 +24,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('statistics:update')->hourly();
-        $schedule->command('commissions:import')
-            ->hourly();
-        $schedule->command('epc:update')
-            ->everyTenMinutes();
-        $schedule->command('sorting:update')
-            ->hourly();
-        $schedule->command('csv:create')
-            ->hourly();
-        $schedule->command('sitemap:generate')
-            ->daily();
-        // $schedule->command('consumers:update')
-        //     ->everyMinute();
     }
 
     /**

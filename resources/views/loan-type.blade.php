@@ -13,11 +13,11 @@
             "url": "{{ url()->current() }}",
             "logo": "
             @if ($logo = \App\Models\Admincp\Settings::where('name', 'logo')->first())
-                {{ 'https://kredituapvienosana.lv' . $logo->value }}
+                {{ 'https://ciekursei.lv' . $logo->value }}
             @endif
             ",
-            "image": "https://kredituapvienosana.lv/images/icon-192x192.png",
-            "email": "mailto:info@kredituapvienosana.lv",
+            "image": "https://ciekursei.lv/images/icon-192x192.png",
+            "email": "mailto:info@ciekursei.lv",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Saldus",
@@ -44,14 +44,13 @@
                         <div class="grid grid-cols-1 gap-2 pb-2 mx-auto md:pb-8 md:gap-4 md:grid-cols-1">
                             <!-- Loan box -->
                             @foreach ($lenders as $position => $lender)
-                                @component('components.offer-box',
-                                    [
-                                        'lender' => $lender,
-                                        'position' => $position,
-                                        'loop' => $loop,
-                                        'reviewSection' => $reviewSection,
-                                        'reviews' => $reviews,
-                                    ])
+                                @component('components.offer-box', [
+                                    'lender' => $lender,
+                                    'position' => $position,
+                                    'loop' => $loop,
+                                    'reviewSection' => $reviewSection,
+                                    'reviews' => $reviews,
+                                ])
                                 @endcomponent
                             @endforeach
                         </div>
@@ -70,8 +69,7 @@
         @endif
         {{-- FAQ --}}
         @if (count($loanType->faqs()) > 0)
-            <x-faq :faqs="$loanType->faqs()"
-                   :faqPage="false"></x-faq>
+            <x-faq :faqs="$loanType->faqs()" :faqPage="false"></x-faq>
             @php
                 $faqsection = \App\Models\Admincp\Sections\Sections::where('type', 'faqs')
                     ->where('lang', app()->getLocale())
@@ -81,7 +79,7 @@
             @if ($faqsection)
                 <div class="flex items-center justify-center pb-12">
                     <a href="{{ route('section', ['name' => $faqsection->route_name]) }}"
-                       class="px-4 py-2 font-semibold text-center text-white transition-colors border bg-primary-normal rounded-xl border-primary-normal hover:bg-white hover:text-primary-normal">@lang('More')</a>
+                        class="px-4 py-2 font-semibold text-center text-white transition-colors border bg-primary-normal rounded-xl border-primary-normal hover:bg-white hover:text-primary-normal">@lang('More')</a>
                 </div>
             @endif
         @endif

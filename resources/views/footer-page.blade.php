@@ -13,11 +13,11 @@
             "url": "{{ url()->current() }}",
             "logo": "
             @if ($logo = \App\Models\Admincp\Settings::where('name', 'logo')->first())
-                {{ 'https://kredituapvienosana.lv' . $logo->value }}
+                {{ 'https://ciekursei.lv' . $logo->value }}
             @endif
             ",
-            "image": "https://kredituapvienosana.lv/images/icon-192x192.png",
-            "email": "mailto:info@kredituapvienosana.lv",
+            "image": "https://ciekursei.lv/images/icon-192x192.png",
+            "email": "mailto:info@ciekursei.lv",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Saldus",
@@ -44,8 +44,7 @@
         {{-- FAQ --}}
         @if ($section->type == 'faqs')
             @if ($faqs)
-                <x-faq :faqs="$faqs"
-                       :faqPage="true"></x-faq>
+                <x-faq :faqs="$faqs" :faqPage="true"></x-faq>
             @endif
         @endif
     </main>

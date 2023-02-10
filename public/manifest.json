@@ -1,7 +1,7 @@
 {
-    "name": "KredituApvienosana.lv",
-    "short_name": "KredituApvienosana",
-    "description": "Apmaksā visus kredītus ar vienu ikmēneša maksājumu - KredituApvienosana.lv",
+    "name": "ciekursei.lv",
+    "short_name": "ciekursei",
+    "description": "Veicam meža zāģēšanu un to izvešanu - ciekursei.lv",
     "icons": [
         {
             "src": "/images/icon-192x192.png",
@@ -9,7 +9,7 @@
             "type": "image/png"
         }
     ],
-    "start_url": "https://www.kredituapvienosana.lv/lv?utm_campaign=a2hs",
+    "start_url": "https://www.ciekursei.lv/lv?",
     "display": "fullscreen",
     "theme_color": "#fff",
     "background_color": "#fff"

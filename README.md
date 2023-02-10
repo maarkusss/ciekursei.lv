@@ -1,4 +1,4 @@
-# KredituApvienosana.lv
+# ciekursei.lv
 
 ## Installation
 

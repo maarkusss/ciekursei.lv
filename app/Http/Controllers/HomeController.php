@@ -30,18 +30,8 @@ class HomeController extends Controller
             return redirect($homepage->redirect_link);
         }
 
-        $loanTypes = LoanTypes::where('lang', app()->getLocale())
-            ->where('active', true)
-            ->orderBy('order', 'asc')
-            ->where('parent_type_id', null)
-            ->first();
-
-        $lenders = $this->getAllLenders(99);
-
         return view('homepage')->with([
             'homepage' => $homepage,
-            'loanTypes' => $loanTypes,
-            'lenders' => $lenders,
             'faqs' => $faqs,
         ]);
     }

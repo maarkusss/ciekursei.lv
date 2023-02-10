@@ -20,9 +20,6 @@ class IndexController extends Controller
         return view('admincp.settings.index')->with([
             'name' => Settings::where('name', 'name')->first(),
             'lang' => Settings::where('name', 'lang')->get(),
-            'prefix' => Settings::where('name', 'prefix')->first(),
-            'api_key' => Settings::where('name', 'api_key')->first(),
-            'individual_days_epc' => Settings::where('name', 'individual_days_epc')->first(),
             'sitemap' => Settings::where('name', 'sitemap')->first(),
             'head_code' => Settings::where('name', 'head_code')->first(),
             'country_code' => Settings::where('name', 'country_code')->first(),
@@ -34,18 +31,12 @@ class IndexController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'lang' => 'required',
-            'prefix' => 'required',
-            'api_key' => 'required',
-            'individual_days_epc' => 'required',
             'sitemap' => 'required',
             'country_code' => 'required',
         ]);
 
         $this->updateName($data['name']);
-        $this->updatePrefix($data['prefix']);
-        $this->updateApiKey($data['api_key']);
         $this->updateSitemap($data['sitemap']);
-        $this->updateIndividualDaysEpc($data['individual_days_epc']);
         $this->updateLang($data['lang']);
         $this->updateCountryCode($data['country_code']);
 
@@ -118,24 +109,6 @@ class IndexController extends Controller
         return true;
     }
 
-    public function updatePrefix($name)
-    {
-        $settings = Settings::where('name', 'prefix')->first();
-
-        if ($settings) {
-            $settings->update([
-                'value' => $name,
-            ]);
-        } else {
-            Settings::create([
-                'name' => 'prefix',
-                'value' => $name,
-            ]);
-        }
-
-        return true;
-    }
-
     public function updateSitemap($name)
     {
         $settings = Settings::where('name', 'sitemap')->first();
@@ -148,42 +121,6 @@ class IndexController extends Controller
             Settings::create([
                 'name' => 'sitemap',
                 'value' => $name,
-            ]);
-        }
-
-        return true;
-    }
-
-    public function updateIndividualDaysEpc($days)
-    {
-        $settings = Settings::where('name', 'individual_days_epc')->first();
-
-        if ($settings) {
-            $settings->update([
-                'value' => $days,
-            ]);
-        } else {
-            Settings::create([
-                'name' => 'individual_days_epc',
-                'value' => $days,
-            ]);
-        }
-
-        return true;
-    }
-
-    public function updateApiKey($api_key)
-    {
-        $settings = Settings::where('name', 'api_key')->first();
-
-        if ($settings) {
-            $settings->update([
-                'value' => $api_key,
-            ]);
-        } else {
-            Settings::create([
-                'name' => 'api_key',
-                'value' => $api_key,
             ]);
         }
 

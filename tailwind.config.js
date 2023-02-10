@@ -9,29 +9,16 @@ module.exports = {
             backgroundImage: {
                 calculatorjpg: "url('/images/calculator-pencil.jpg')",
                 darktintjpg: "url('/images/dark_tint.png')",
+                forwarder: "url('/images/forwarder.jpg')",
             },
             colors: {
-                gray: colors.neutral,
-                "gray-slate": colors.slate,
                 primary: {
-                    normal: "#343a40",
-                    text: "#6c757d",
+                    normal: "#734222",           
                     dark: "#bbb",
-                    button: "#146ef5",
-                },
-                secondary: {
-                    normal: "#e89980",
-                    dark: "#f9e5df",
-                },
-                background: {
-                    normal: "#f0f0f0",
                 },
             },
             screens: {
-                xs: "480px",
-            },
-            boxShadow: {
-                bootstrap: "0 1px 6px rgb(32 33 36 / 28%);",
+                xs: "375px",
             },
             fontFamily: {
                 helvetica: [

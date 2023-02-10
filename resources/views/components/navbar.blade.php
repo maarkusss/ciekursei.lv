@@ -8,22 +8,15 @@
         ->get();
     
     $languages = App\Models\Admincp\Settings::where('name', 'lang')->get();
-    
-    $loanTypes = App\Models\Admincp\LoanTypes\LoanTypes::where('lang', app()->getLocale())
-        ->where('active', true)
-        ->where('parent_type_id', null)
-        ->orderBy('order', 'desc')
-        ->get();
-    
     $connectedUrl = App\Models\Admincp\ConnectedRoutes::where('url_from', URL::full())->first();
     
 @endphp
 {{-- @dd($connectedUrl) --}}
-<header class="top-0 z-10 bg-primary-normal">
+<header class="fixed top-0 z-10 w-full bg-transperent bg-black/60">
     <div class="relative">
-        <div class="flex items-center justify-between h-16 px-4 py-2 mx-auto">
+        <div class="flex items-center justify-between h-16 max-w-screen-xl px-4 py-2 mx-auto">
             <div
-                class="flex items-center justify-between w-auto py-2 font-medium text-gray-300 transition-all duration-200 rounded-lg cursor-pointer lg:justify-start hover:text-gray-300 hover:bg-gray-300 hover:bg-opacity-10">
+                class="flex items-center justify-between w-auto py-2 font-[1000] text-xl text-white text-gray-300 transition-all duration-200 rounded-lg cursor-pointer lg:justify-start hover:text-gray-300 hover:bg-gray-300 hover:bg-opacity-10">
                 <a href="{{ route('homepage') }}" title="{{ env('APP_NAME') }}">
                     {{ env('APP_NAME') }}
                 </a>
@@ -40,55 +33,6 @@
                 </button>
                 <ul class="absolute inset-x-0 bottom-0 items-stretch justify-end hidden w-full text-gray-300 translate-y-full text-md md:border-0 md:flex md:w-auto md:translate-y-0 md:bg-none md:relative"
                     id="header_menu">
-                    {{-- Loan types --}}
-                    <ul
-                        class="flex flex-col items-center w-full gap-4 py-8 text-2xl lg:py-0 lg:flex-row lg:text-sm lg:w-auto">
-                        @foreach ($loanTypes as $loanType)
-                            @php
-                                $subsections = \App\Models\Admincp\LoanTypes\LoanTypes::where('parent_type_id', $loanType->id)
-                                    ->where('active', 1)
-                                    ->orderBy('order')
-                                    ->get();
-                            @endphp
-                            <li class="relative w-auto text-sm"
-                                @if ($subsections->count() > 0) id="navbar_dropdown_button_{{ $loanType->id }}"
-                                    onMouseEnter="toggleDropdownContainer({{ $loanType->id }})"
-                                    onMouseLeave="toggleDropdownContainer({{ $loanType->id }})" @endif>
-                                <button
-                                    class="flex items-center justify-start w-auto px-3 py-2 font-medium text-gray-300 transition-all duration-200 rounded-lg cursor-pointer hover:text-gray-300 hover:bg-gray-300 hover:bg-opacity-10"
-                                    type="button">
-                                    <a href="{{ route('section', ['name' => $loanType->route_name]) }}"
-                                        title="{{ $loanType->anchor_element_title }}">
-                                        {{ $loanType->name }}
-                                    </a>
-                                    @if ($subsections->count() > 0)
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    @endif
-                                </button>
-                                @if ($subsections->count() > 0)
-                                    <div class="absolute left-0 hidden pt-6"
-                                        id="navbar_dropdown_container_{{ $loanType->id }}">
-                                        <ul class="grid w-full px-5 py-4 bg-white rounded-lg shadow-md gap-y-3">
-                                            @foreach ($subsections as $subsection)
-                                                <li
-                                                    class="text-sm transition-all duration-200 text-primary-normal hover:text-gray-300 whitespace-nowrap">
-                                                    <a href="{{ route('section.deep', ['name' => $loanType->route_name, 'deep_name' => $subsection->route_name]) }}"
-                                                        title="{{ $subsection->anchor_element_title }}">
-                                                        {{ $subsection->name }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                            </li>
-                        @endforeach
-                    </ul>
                     @if (count($footerPages) > 0)
                         @foreach ($footerPages as $footerPage)
                             <li class="flex flex-row items-center w-auto gap-4 py-0 text-sm">
@@ -147,48 +91,9 @@
                 </ul>
             </div>
         </div>
-
     </div>
 </header>
 <div class="absolute z-10 hidden w-full transition ease-in-out bg-primary-normal" id="header_menu_button_items">
-    {{-- Loan types --}}
-    <ul class="flex flex-col">
-        @foreach ($loanTypes as $loanType)
-            @php
-                $subsections = \App\Models\Admincp\LoanTypes\LoanTypes::where('parent_type_id', $loanType->id)
-                    ->where('active', 1)
-                    ->orderBy('order')
-                    ->get();
-            @endphp
-            <li class="relative w-auto"> <button class="flex items-center w-full p-4 text-gray-300 ease-in-out"
-                    type="button">
-                    <a href="{{ route('section', ['name' => $loanType->route_name]) }}"
-                        title="{{ $loanType->anchor_element_title }}">
-                        {{ $loanType->name }}
-                    </a>
-                    @if ($subsections->count() > 0)
-                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    @endif
-                </button>
-                @if ($subsections->count() > 0)
-                    <ul class="grid w-full text-white">
-                        @foreach ($subsections as $subsection)
-                            <a href="{{ route('section.deep', ['name' => $loanType->route_name, 'deep_name' => $subsection->route_name]) }}"
-                                title="{{ $subsection->anchor_element_title }}">
-                                <li class="flex items-center w-full py-2.5 px-10 ease-in-out text-gray-300">
-                                    {{ $subsection->name }}
-                                </li>
-                            </a>
-                        @endforeach
-                    </ul>
-                @endif
-            </li>
-        @endforeach
-    </ul>
     @if (count($footerPages) > 0)
         @foreach ($footerPages as $footerPage)
             <li class="flex items-center ease-in-out">
