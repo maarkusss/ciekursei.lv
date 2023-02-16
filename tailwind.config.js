@@ -6,11 +6,6 @@ module.exports = {
     darkMode: "media",
     theme: {
         extend: {
-            backgroundImage: {
-                calculatorjpg: "url('/images/calculator-pencil.jpg')",
-                darktintjpg: "url('/images/dark_tint.png')",
-                forwarder: "url('/images/forwarder.jpg')",
-            },
             colors: {
                 primary: {
                     normal: "#734222",           

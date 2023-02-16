@@ -26,20 +26,16 @@
 </head>
 
 <body class="antialiased text-gray-700 bg-white font-helvetica">
-    <section class="bg-no-repeat bg-cover bg-[url('/images/forwarder.jpg')]">
-        <div class="bg-no-repeat bg-cover darktint">
+    <section class="bg-no-repeat bg-cover bg-[url('/images/forwarder.jpg')] min-h-screen">
+        <div class="min-h-screen bg-black/40">
             @include('components.navbar')
-            <div class="max-w-full mx-auto py-[48rem]">
-                {{-- <div class="px-2 pb-8">
-                    <h1 class="pb-4 pt-[7rem] text-4xl font-semibold text-center text-white">{{ $homepage->h1 }}</h1>
-                    <p class="text-lg font-light text-center text-white">{{ $homepage->h1_description }}</p>
-                </div> --}}
+            <div class="max-w-full pt-12 mx-auto">
+                @yield('content')
             </div>
+            <x-scroll-to-top-button />
+            @include('components.footer')
         </div>
     </section>
-    @yield('content')
-    <x-scroll-to-top-button />
-    @include('components.footer')
     @include('components.cookies-notification')
     {{-- Scripts --}}
     @yield('javascript')

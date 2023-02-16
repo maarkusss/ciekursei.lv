@@ -8,7 +8,7 @@
         ->get();
 @endphp
 
-<footer class="bg-primary-normal">
+<footer class="w-full bg-transperent bg-black/60">
     <section class="max-w-screen-xl py-2 mx-auto">
         <div class="px-4">
             @if (count($sections) > 0)
